@@ -8,6 +8,7 @@ function App() {
   const [options, setOptions] = useState(null);
   const [valid, setValid] = useState(null);
   const [status, setStatus] = useState(false);
+  const [bla, setBla] = useState(false);
   const isCancelled = useRef(false);
 
   const checkIfRobot = (e) => {
@@ -18,7 +19,10 @@ function App() {
       setStatus(false)
     }
   }
-
+  const getAnother = () => {
+    setBla(prev => !prev)
+    setLoading(true)
+  }
   const getData = useCallback(async () => {
     const dataJson = await fetch("/api");
     const dataObj = await dataJson.json();
@@ -38,7 +42,7 @@ function App() {
       console.log('unmounted')
       isCancelled.current = true;
     }
-  }, [getData]);
+  }, [getData, bla]);
 
   
   return (
@@ -57,7 +61,9 @@ function App() {
           
                   </div> 
                   {status ? <h3> not a robot!</h3> : <h3>robot?</h3>}
+                  <button onClick={getAnother}>another image</button>
         </div>}
+
 
       </header>
     </div>

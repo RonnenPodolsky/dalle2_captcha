@@ -6,7 +6,7 @@ const ARGS_API = '&pass=agamsclass'
 
 const cors = require('cors')
 app.use(cors());
-
+ 
 app.get('/api', async (req, res) => {
     const randomChoices = ['dog', 'cat', 'mouse', 'cammel'];
     const randomPick = Math.floor(Math.random() * 4);
